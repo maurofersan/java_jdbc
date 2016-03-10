@@ -23,10 +23,10 @@ public class Prueba2 {
             cn = AccesoDB.getConnection();
             System.out.println("Conexion ok");
 
-            String sql = "insert into parametro(CHR_PARACODIGO,"
-                    + "VCH_PARADESCRIPCION,VCH_PARAVALOR,"
-                    + "VCH_PARAESTADO) values('777', 'PROFESOR', 'GUSTAVO CORONEL',"
-                    + "ACTIVO)";
+            String sql = "insert into parametro (CHR_PARACODIGO, "
+                    + " VCH_PARADESCRIPCION, VCH_PARAVALOR, "
+                    + " VCH_PARAESTADO) values ('777', 'PROFESOR', 'GUSTAVO CORONEL', "
+                    + " 'ACTIVO' )";
 
             Statement stm = cn.createStatement();
             stm.executeUpdate(sql);

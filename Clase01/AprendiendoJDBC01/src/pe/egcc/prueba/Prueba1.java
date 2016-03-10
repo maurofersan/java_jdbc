@@ -3,6 +3,7 @@ package pe.egcc.prueba;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /*
@@ -23,7 +24,7 @@ public class Prueba1 {
             // Paso 1: Cargar el driver a memoria 
             Class.forName("oracle.jdbc.OracleDriver").newInstance();
             // Paso 2: Obtener el objeto Connection 
-            String url = "jdbc:oracle:thin:@localhost:1521:XE";
+            String url = "jdbc:oracle:thin:@localhost:49157:orcl";
             cn = DriverManager.getConnection(url, "eureka", "admin");
             //Mensaje
             System.out.println("Conexon ok");
@@ -35,7 +36,7 @@ public class Prueba1 {
         } catch (ClassNotFoundException e) {
             System.err.println("No se encontró el driver de la base de datos.");
         } catch (Exception e) {
-            System.err.println("No se puede...");
+            System.err.println("No se puede establecer la conexion en la BD");
         }
     }
 }

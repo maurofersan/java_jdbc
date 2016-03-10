@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pe.mauro.eurekacs.view;
 
+import java.awt.Dialog;
+import pe.mauro.eurekacs.controller.LogonController;
+import pe.mauro.eurekacs.util.Dialogo;
+
 /**
- *
- * @author Alumno
+ * @author Mauro
  */
 public class LogonView extends javax.swing.JDialog {
 
@@ -33,7 +31,7 @@ public class LogonView extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -47,8 +45,18 @@ public class LogonView extends javax.swing.JDialog {
         jLabel3.setText("Clave:");
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,7 +72,7 @@ public class LogonView extends javax.swing.JDialog {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                             .addComponent(txtUsuario)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
+                            .addComponent(txtClave)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(btnIngresar)
@@ -87,7 +95,7 @@ public class LogonView extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,6 +105,26 @@ public class LogonView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        try {
+            //Datos
+            String usuario = txtUsuario.getText();
+            String clave = String.valueOf(txtClave.getPassword());
+            //Proceso 
+            LogonController control = new LogonController();
+            control.valida(usuario, clave);
+            this.dispose();
+            FormularioMDI.main(null);
+        } catch (Exception e) {
+            Dialogo.error(rootPane, e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,7 +174,7 @@ public class LogonView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,6 +22,7 @@ public class Prueba5 extends javax.swing.JFrame {
      */
     public Prueba5() {
         initComponents();
+        
     }
 
     /**
@@ -68,54 +69,6 @@ public class Prueba5 extends javax.swing.JFrame {
         jLabel7.setText("Teléfono:");
 
         jLabel8.setText("Email:");
-
-        txtPaterno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPaternoActionPerformed(evt);
-            }
-        });
-
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
-        txtMaterno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaternoActionPerformed(evt);
-            }
-        });
-
-        txtDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDniActionPerformed(evt);
-            }
-        });
-
-        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCiudadActionPerformed(evt);
-            }
-        });
-
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         btnProcesar.setText("Procesar");
         btnProcesar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,38 +151,6 @@ public class Prueba5 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaternoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPaternoActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaternoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaternoActionPerformed
-
-    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDniActionPerformed
-
-    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCiudadActionPerformed
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
         Connection cn = null;
         try {
@@ -242,8 +163,8 @@ public class Prueba5 extends javax.swing.JFrame {
            // Inicio
            String sql = "select INT_CONTITEM,INT_CONTLONGITUD "
                    + "from contador "
-                   + "where VCH_CONTTABLA='Cliente' "
-                   + "for update";
+                   + "where VCH_CONTTABLA = 'Cliente' "
+                   + "for update ";
            //for update bloquea la fila
            //solo si estas en un transaccion o  vas a modificar la fila
             PreparedStatement pstm = cn.prepareStatement(sql);
@@ -260,8 +181,8 @@ public class Prueba5 extends javax.swing.JFrame {
             cont++;
             String codigo = String.format(formato, cont);
             // Actualizar tabla contador
-            sql = "update contador set INT_CONTITEM=? "
-                    + "where VCH_CONTTABLA='Cliente'";
+            sql = "update contador set INT_CONTITEM = ? "
+                    + "where VCH_CONTTABLA = 'Cliente' ";
             pstm = cn.prepareStatement(sql);
             pstm.setInt(1, cont);
             pstm.executeUpdate();
